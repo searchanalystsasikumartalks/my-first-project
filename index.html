@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111714">
+    <meta name="description" content="Sasikumar Talks — a little curiosity, a lot to talk about.">
+    <title>Sasikumar Talks</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+        background: #111714;
+        color: #f1f3e9;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(24px, 5vw, 72px);
+        background:
+          radial-gradient(ellipse at 83% 52%, #b9e8790b, transparent 55%),
+          #111714;
+      }
+
+      header, footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .monogram {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #62715c;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: -1px;
+      }
+
+      .eyebrow, .edition, footer {
+        font-size: 11px;
+        line-height: 1.6;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        color: #a5afa1;
+      }
+
+      .edition { text-align: right; }
+
+      main {
+        position: relative;
+        isolation: isolate;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(64px, 10vh, 120px) 0;
+      }
+
+      .orbit {
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        right: 3%;
+        width: min(42vw, 560px);
+        aspect-ratio: 1;
+        border: 1px solid #bde98522;
+        border-radius: 50%;
+        transform: translateY(-50%);
+      }
+
+      .orbit::before, .orbit::after {
+        content: "";
+        position: absolute;
+        border: 1px solid #bde98516;
+        border-radius: 50%;
+        inset: 12%;
+      }
+
+      .orbit::after { inset: 25%; }
+
+      .eyebrow { margin: 0 0 28px; }
+      .eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-right: 12px;
+        border-radius: 50%;
+        background: #c2ee89;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(52px, 11.5vw, 172px);
+        font-weight: 600;
+        line-height: .98;
+        letter-spacing: -.07em;
+      }
+
+      .word {
+        display: block;
+        width: fit-content;
+        animation: arrive 1s cubic-bezier(.2, .7, .2, 1) both;
+      }
+
+      .accent {
+        color: #c2ee89;
+        animation-delay: .16s;
+      }
+
+      .title-row { display: flex; align-items: center; gap: clamp(22px, 4vw, 60px); }
+      .wave { display: flex; align-items: center; gap: 6px; height: 64px; padding-top: 10px; }
+      .wave i {
+        display: block;
+        width: 5px;
+        height: var(--height);
+        background: #c2ee89;
+        border-radius: 8px;
+        transform-origin: center;
+        animation: speak 1s ease-in-out 3;
+        animation-delay: var(--delay);
+      }
+
+      .intro {
+        max-width: 340px;
+        margin: 36px 0 0;
+        color: #b5beb0;
+        font-size: clamp(16px, 1.5vw, 20px);
+        line-height: 1.7;
+        animation: arrive 1s .3s both;
+      }
+
+      footer { border-top: 1px solid #35402f; padding-top: 22px; }
+      footer p { margin: 0; }
+      .footer-note { color: #c2ee89; }
+
+      @keyframes arrive {
+        from { opacity: 0; transform: translateY(24px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes speak {
+        0%, 100% { transform: scaleY(1); }
+        50% { transform: scaleY(.35); }
+      }
+
+      @media (min-width: 1600px) {
+        body { max-width: 1800px; margin-inline: auto; }
+      }
+
+      @media (max-width: 600px) {
+        .orbit { width: 68vw; right: 0; }
+        .wave { gap: 4px; height: 42px; }
+        .wave i { width: 3px; max-height: 36px; }
+        footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+        .edition { max-width: 150px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <span class="monogram" aria-hidden="true">ST</span>
+      <span class="edition">An open mind.<br>A new conversation.</span>
+    </header>
+    <main>
+      <div class="orbit" aria-hidden="true"></div>
+      <p class="eyebrow">Ideas deserve a voice</p>
+      <h1><span class="word">Sasikumar</span> <span class="title-row"><span class="word accent">Talks</span><span class="wave" aria-hidden="true"><i style="--height: 18px; --delay: 0s"></i><i style="--height: 34px; --delay: .1s"></i><i style="--height: 56px; --delay: .2s"></i><i style="--height: 40px; --delay: .3s"></i><i style="--height: 24px; --delay: .4s"></i></span></span></h1>
+      <p class="intro">A little curiosity.<br>A lot to talk about.</p>
+    </main>
+    <footer>
+      <p>Thoughts. Stories. Possibilities.</p>
+      <p class="footer-note">The conversation starts here.</p>
+    </footer>
+  </body>
+</html>
