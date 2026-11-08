@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "applications": [
+    {
+      "slug": "unit-price-comparator",
+      "title": "Unit price comparator",
+      "category": "Everyday tools",
+      "summary": "Compare pack sizes on a common unit and see which option costs less.",
+      "version": "0.1.1",
+      "updated": "2026-10-31",
+      "url": "https://sasikumartalks.com/appln/apps/unit-price-comparator/"
+    },
+    {
+      "slug": "csv-structure-profile",
+      "title": "CSV structure inspector",
+      "category": "Data tools",
+      "summary": "Check CSV row widths, empty cells, duplicate rows and header names in your browser.",
+      "version": "0.1.0",
+      "updated": "2026-10-26",
+      "url": "https://sasikumartalks.com/appln/apps/csv-structure-profile/"
+    },
+    {
+      "slug": "csv-text-workbook",
+      "title": "CSV text workbook",
+      "category": "Data interoperability",
+      "summary": "Create a text-cell XLSX workbook that keeps CSV identifiers, leading zeros and date-like values as text.",
+      "version": "0.2.1",
+      "updated": "2026-10-30",
+      "url": "https://sasikumartalks.com/appln/apps/csv-text-workbook/"
+    },
+    {
+      "slug": "kubernetes-resource-planner",
+      "title": "Kubernetes resource planner",
+      "category": "Infrastructure tools",
+      "summary": "Check container CPU and memory units, compare requests with limits, and total identical Pod replicas.",
+      "version": "0.1.1",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/kubernetes-resource-planner/"
+    },
+    {
+      "slug": "subtitle-timing-inspector",
+      "title": "Subtitle timing inspector",
+      "category": "Video production",
+      "summary": "Inspect SRT and basic WebVTT cue timing, overlaps and character pace without uploading your captions.",
+      "version": "0.1.1",
+      "updated": "2026-10-31",
+      "url": "https://sasikumartalks.com/appln/apps/subtitle-timing-inspector/"
+    },
+    {
+      "slug": "fabric-shrinkage-planner",
+      "title": "Fabric shrinkage planner",
+      "category": "Textile planning",
+      "summary": "Plan fabric length before washing and check usable width from your measured swatch changes.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/fabric-shrinkage-planner/"
+    },
+    {
+      "slug": "sql-join-row-tracer",
+      "title": "SQL join row tracer",
+      "category": "Data query education",
+      "summary": "Trace duplicate-key matches and unmatched rows back to two small JSON input tables.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/sql-join-row-tracer/"
+    },
+    {
+      "slug": "photo-contact-sheet",
+      "title": "Photo contact sheet",
+      "category": "Visual asset review",
+      "summary": "Arrange local images into a numbered contact sheet with filename labels and download a PNG.",
+      "version": "0.1.1",
+      "updated": "2026-10-31",
+      "url": "https://sasikumartalks.com/appln/apps/photo-contact-sheet/"
+    },
+    {
+      "slug": "reorder-point-scenarios",
+      "title": "Reorder point scenarios",
+      "category": "Stock replenishment planning",
+      "summary": "Compare demand, lead-time and buffer assumptions while separating inventory position from physical stock cover.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/reorder-point-scenarios/"
+    },
+    {
+      "slug": "batch-recipe-prep-pack",
+      "title": "Batch recipe prep pack",
+      "category": "Food preparation",
+      "summary": "Scale several recipes, trace shared ingredient totals and save printable prep sheets plus CSV handoff lists.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/batch-recipe-prep-pack/"
+    },
+    {
+      "slug": "text-chapters-to-epub",
+      "title": "Text chapters to EPUB",
+      "category": "Writing and publishing",
+      "summary": "Create an EPUB and HTML reading copy from plain-text chapters, with a linked contents list and temporary local inputs.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/text-chapters-to-epub/"
+    },
+    {
+      "slug": "screenshot-mask-export",
+      "title": "Screenshot mask export",
+      "category": "Image handoff",
+      "summary": "Cover chosen image regions with opaque pixel rectangles and save a flattened PNG using drawing or keyboard coordinates.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/screenshot-mask-export/"
+    },
+    {
+      "slug": "order-cutoff-calendar",
+      "title": "Order cutoff calendar",
+      "category": "Fulfillment scheduling",
+      "summary": "Work backward from supplied send-by dates through processing, buffer and closures, then save a calendar and planning page.",
+      "version": "0.1.0",
+      "updated": "2026-10-27",
+      "url": "https://sasikumartalks.com/appln/apps/order-cutoff-calendar/"
+    },
+    {
+      "slug": "file-handoff-pack",
+      "title": "File handoff pack",
+      "category": "File delivery preparation",
+      "summary": "Create sequentially named file copies in a ZIP with original-name mapping, byte counts and SHA-256 digests.",
+      "version": "0.1.0",
+      "updated": "2026-10-28",
+      "url": "https://sasikumartalks.com/appln/apps/file-handoff-pack/"
+    },
+    {
+      "slug": "supplier-price-review-pack",
+      "title": "Supplier price review pack",
+      "category": "Purchasing review",
+      "summary": "Compare two SKU price snapshots and save a review pack of increases, decreases, added and missing items.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/supplier-price-review-pack/"
+    },
+    {
+      "slug": "round-robin-court-pack",
+      "title": "Round-robin court pack",
+      "category": "Club event operations",
+      "summary": "Build a court schedule, participant itineraries and a printable score sheet for a small all-play-all event.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/round-robin-court-pack/"
+    },
+    {
+      "slug": "meeting-action-handoff",
+      "title": "Meeting action handoff",
+      "category": "Team action handoff",
+      "summary": "Create a shared decision brief, owner checklists and a separate facilitator copy from agreed meeting actions.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/meeting-action-handoff/"
+    },
+    {
+      "slug": "literal-text-replacement-pack",
+      "title": "Literal text replacement pack",
+      "category": "Text editing",
+      "summary": "Review one exact text replacement across local UTF-8 files and download selected edited copies with a byte-check manifest.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/literal-text-replacement-pack/"
+    },
+    {
+      "slug": "scorm-wrapper-repair",
+      "title": "SCORM wrapper repair",
+      "category": "Learning content packaging",
+      "summary": "Remove one enclosing folder from a small course ZIP, preserve file bytes and save a path-and-hash repair log.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/scorm-wrapper-repair/"
+    },
+    {
+      "slug": "price-card-print-sheet",
+      "title": "Price card print sheet",
+      "category": "Retail price displays",
+      "summary": "Turn prepared SKU, name, price and quantity rows into checked A4 or Letter cut-out price cards and save a printable copy.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/price-card-print-sheet/"
+    },
+    {
+      "slug": "filament-batch-planner",
+      "title": "Filament batch planner",
+      "category": "Manufacturing batch planning",
+      "summary": "Assign whole print jobs to matching spool mass budgets, adjust the allocation and save a reviewable batch plan.",
+      "version": "0.1.0",
+      "updated": "2026-10-29",
+      "url": "https://sasikumartalks.com/appln/apps/filament-batch-planner/"
+    },
+    {
+      "slug": "receipt-quantity-review",
+      "title": "Receipt quantity review",
+      "category": "Receiving exception review",
+      "summary": "Compare signed receipt and invoice quantities by exact PO line, flag identity conflicts and save a source-traceable report.",
+      "version": "0.1.0",
+      "updated": "2026-10-30",
+      "url": "https://sasikumartalks.com/appln/apps/receipt-quantity-review/"
+    },
+    {
+      "slug": "dependency-day-plan",
+      "title": "Dependency day plan",
+      "category": "Project planning handoff",
+      "summary": "Turn whole-day task estimates and finish-to-start links into a dated working-day plan and save an HTML/JSON handoff.",
+      "version": "0.1.1",
+      "updated": "2026-10-31",
+      "url": "https://sasikumartalks.com/appln/apps/dependency-day-plan/"
+    },
+    {
+      "slug": "campaign-link-pack",
+      "title": "Campaign Link Pack",
+      "category": "Marketing operations",
+      "summary": "Build and review UTM campaign URL batches, then save a publishing handoff and reusable source inputs.",
+      "version": "0.1.0",
+      "updated": "2026-11-02",
+      "url": "https://sasikumartalks.com/appln/apps/campaign-link-pack/"
+    },
+    {
+      "slug": "locale-review-handoff",
+      "title": "Locale Review Handoff",
+      "category": "Localization",
+      "summary": "Compare translation JSON files, review literal key and string differences, then export decisions and notes.",
+      "version": "0.1.0",
+      "updated": "2026-11-02",
+      "url": "https://sasikumartalks.com/appln/apps/locale-review-handoff/"
+    },
+    {"slug":"a","title":"Preference Garden","category":"Self-reflection","summary":"Choose ten favorites and read a playful reflection. For fun only, not a psychological assessment.","version":"0.2.0","updated":"2026-11-08","url":"https://sasikumartalks.com/appln/apps/a/"}
+  ]
+}
