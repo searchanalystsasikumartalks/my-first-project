@@ -50,7 +50,7 @@ def python_candidates():
     # Metadata only for fixed conventional interpreter names in the verified venv.
     # Resolved targets are reported, never executed or read by this function.
     candidates=[]
-    for name in ('python','python3','python3.11'):
+    for name in ('python','python3','python3.11','python3.11_bin'):
         path=KNOWN_PYTHON_BIN+'/'+name
         try:st=os.lstat(path)
         except FileNotFoundError:
