@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - /bin/bash /home/dzfbipjkvhxg/repositories/github-transfer-test-20261108/deployment/deploy-a-create-only.sh
+    - /usr/bin/env python3 -I /home/dzfbipjkvhxg/repositories/github-transfer-test-20261108/deployment/catalog-preview/catalog_release.py prepare-and-apply
