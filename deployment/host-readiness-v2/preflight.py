@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Read-only host preflight by default. --temporary-test explicitly adds private disposable probes."""
-import argparse,ctypes,fcntl,json,os,stat,subprocess,sys,tempfile
+import argparse,ctypes,fcntl,hashlib,json,os,re,stat,subprocess,sys,tempfile
 HOME='/home/dzfbipjkvhxg'
 APPS=HOME+'/public_html/appln/apps'
 PRIVATE=HOME+'/.local/appstudio-deployer'
 KNOWN_PYTHON_BIN=HOME+'/virtualenv/sasi-mysql-name-test/sasi-mysql-name-test/3.11/bin'
+WRAPPER='/usr/share/l.v.e-manager/utils/python_wrapper'
 DIR=os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW
 
 def directory(path):
@@ -15,6 +16,35 @@ def directory(path):
             n=os.open(p,DIR,dir_fd=fd);os.close(fd);fd=n
         return fd
     except BaseException:os.close(fd);raise
+
+def wrapper_source():
+    fd=os.open(WRAPPER,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+    try:
+        st=os.fstat(fd)
+        result={'path':WRAPPER,'size':st.st_size,'mode':oct(stat.S_IMODE(st.st_mode)),'executed':False}
+        if not stat.S_ISREG(st.st_mode):raise ValueError('wrapper is not a regular file')
+        if not 0<st.st_size<=65536:
+            result['source_status']='size_outside_read_bound';return result
+        content=b''
+        while len(content)<=65536:
+            chunk=os.read(fd,min(8192,65537-len(content)))
+            if not chunk:break
+            content+=chunk
+        after=os.fstat(fd);current=os.stat(WRAPPER,follow_symlinks=False)
+        key=lambda x:(x.st_dev,x.st_ino,x.st_size,x.st_mtime_ns,x.st_ctime_ns)
+        if len(content)>65536 or key(st)!=key(after) or key(after)!=key(current):raise ValueError('wrapper changed during bounded read')
+        result['sha256']=hashlib.sha256(content).hexdigest()
+        if content.startswith(b'\x7fELF'):
+            result['source_status']='ELF_binary_not_dumped';return result
+        try:text=content.decode('utf-8')
+        except UnicodeError:
+            result['source_status']='non_UTF8_not_dumped';return result
+        if any(ord(c)<32 and c not in '\n\r\t' for c in text) or not text.startswith('#!'):
+            result['source_status']='not_text_script_not_dumped';return result
+        if re.search(r'password|secret|token|credential|BEGIN .*PRIVATE KEY',text,re.I):
+            result['source_status']='potential_sensitive_text_withheld';return result
+        result['source_status']='bounded_text_script';result['source']=text;return result
+    finally:os.close(fd)
 
 def python_candidates():
     # Metadata only for fixed conventional interpreter names in the verified venv.
@@ -83,6 +113,7 @@ def inspect(temporary=False):
         except Exception as e:r['failures'].append({'check':name,'error':type(e).__name__+': '+str(e)})
     r['checks']['python']={'version':list(sys.version_info[:3]),'supported':sys.version_info>=(3,10),'executable':sys.executable,'resolved_executable':os.path.realpath(sys.executable),'prefix':sys.prefix,'base_prefix':getattr(sys,'base_prefix',sys.prefix),'base_executable':getattr(sys,'_base_executable',None)}
     check('known_python_candidates',python_candidates)
+    check('installed_wrapper',wrapper_source)
     if sys.version_info<(3,10):r['failures'].append({'check':'python','error':'Python3.10+ required'})
     libc=ctypes.CDLL(None,use_errno=True);r['checks']['renameat2_symbol']=hasattr(libc,'renameat2')
     if not hasattr(libc,'renameat2'):r['failures'].append({'check':'renameat2','error':'libc symbol unavailable'})
