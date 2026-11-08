@@ -1,4 +1,4 @@
 ---
 deployment:
   tasks:
-    - /usr/bin/env python3 -I /home/dzfbipjkvhxg/repositories/github-transfer-test-20261108/deployment/indexable-preference/indexable_release.py prepare-and-apply
+    - /usr/bin/env python3 -I /home/dzfbipjkvhxg/repositories/github-transfer-test-20261108/deployment/host-readiness-v2/preflight.py
