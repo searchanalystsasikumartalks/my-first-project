@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#180e25">
+  <meta name="description" content="Wishing you a Diwali filled with light, love, and beautiful new beginnings.">
+  <title>Happy Diwali · A Festival of Light</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 24px; color: #fff3db; background: radial-gradient(ellipse at 50% 65%, #633324 0, #291329 40%, #130d21 80%); font-family: Georgia, 'Times New Roman', serif; }
+    main { position: relative; width: min(100%, 760px); padding: clamp(32px, 7vw, 72px) 24px; text-align: center; border: 1px solid #c99a5555; border-radius: 180px 180px 24px 24px; background: #1b10294d; }
+    .eyebrow { margin: 0 0 28px; color: #eec58d; font: 11px/1.8 system-ui, sans-serif; letter-spacing: .3em; text-transform: uppercase; }
+    .lamp { display: block; width: 160px; height: 160px; margin: 0 auto 18px; overflow: visible; }
+    .flame { transform-origin: 80px 92px; animation: glow 3s ease-in-out infinite alternate; }
+    h1 { margin: 0; font-size: clamp(48px, 10vw, 86px); line-height: 1.05; font-weight: 400; letter-spacing: -.04em; }
+    h1 span { display: block; color: #f6c570; font-style: italic; }
+    .divider { margin: 28px auto; width: 100px; height: 1px; background: linear-gradient(90deg, transparent, #e6b767, transparent); }
+    .wish { max-width: 400px; margin: 0 auto; color: #e8d9cc; font-size: clamp(17px, 3vw, 20px); line-height: 1.7; }
+    footer { margin-top: 32px; color: #eec58d; font: 10px/1.8 system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+    .star { position: absolute; color: #e7b66b; font-size: 24px; }
+    .star.left { top: 32%; left: 8%; } .star.right { top: 24%; right: 10%; font-size: 16px; }
+    @keyframes glow { from { opacity: .85; transform: scale(.97); } to { opacity: 1; transform: scale(1.03); } }
+    @media (prefers-reduced-motion: reduce) { .flame { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="star left" aria-hidden="true">✦</span>
+    <span class="star right" aria-hidden="true">✦</span>
+    <p class="eyebrow">A festival of light</p>
+    <svg class="lamp" viewBox="0 0 160 160" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <defs><radialGradient id="halo"><stop stop-color="#ffca70" stop-opacity=".3"/><stop offset="1" stop-color="#ffca70" stop-opacity="0"/></radialGradient><linearGradient id="fire" x2="0" y2="1"><stop stop-color="#fff4c2"/><stop offset="1" stop-color="#ff9c34"/></linearGradient></defs>
+      <circle cx="80" cy="75" r="75" fill="url(#halo)"/>
+      <path class="flame" d="M80 25C84 47 101 55 98 72C96 85 87 93 80 93C68 93 59 84 61 71C63 56 77 47 80 25Z" fill="url(#fire)"/>
+      <path d="M80 64C84 75 90 79 87 86C85 91 82 94 79 94C72 92 72 84 75 78Z" fill="#fff5c9"/>
+      <ellipse cx="80" cy="103" rx="55" ry="12" fill="#e89c53"/>
+      <path d="M25 103Q80 126 135 103Q125 146 80 147Q35 146 25 103Z" fill="#af4e38"/>
+      <path d="M36 118Q80 141 124 118" fill="none" stroke="#f4bd70" stroke-width="2"/>
+      <path d="M80 101L80 91" stroke="#fff0c6" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <h1>Happy <span>Diwali</span></h1>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="wish">May every little light bring warmth to your home, joy to your heart, and hope for beautiful new beginnings.</p>
+    <footer>Light · Love · Togetherness</footer>
+  </main>
+</body>
+</html>
