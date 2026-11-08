@@ -4,6 +4,7 @@ import argparse,ctypes,fcntl,json,os,stat,subprocess,sys,tempfile
 HOME='/home/dzfbipjkvhxg'
 APPS=HOME+'/public_html/appln/apps'
 PRIVATE=HOME+'/.local/appstudio-deployer'
+KNOWN_PYTHON_BIN=HOME+'/virtualenv/sasi-mysql-name-test/sasi-mysql-name-test/3.11/bin'
 DIR=os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW
 
 def directory(path):
@@ -14,6 +15,23 @@ def directory(path):
             n=os.open(p,DIR,dir_fd=fd);os.close(fd);fd=n
         return fd
     except BaseException:os.close(fd);raise
+
+def python_candidates():
+    # Metadata only for fixed conventional interpreter names in the verified venv.
+    # Resolved targets are reported, never executed or read by this function.
+    candidates=[]
+    for name in ('python','python3','python3.11'):
+        path=KNOWN_PYTHON_BIN+'/'+name
+        try:st=os.lstat(path)
+        except FileNotFoundError:
+            candidates.append({'name':name,'exists':False});continue
+        item={'name':name,'exists':True,'path':path,'symlink':stat.S_ISLNK(st.st_mode),'mode':oct(stat.S_IMODE(st.st_mode))}
+        if stat.S_ISREG(st.st_mode) or stat.S_ISLNK(st.st_mode):
+            item['resolved_path']=os.path.realpath(path)
+            item['executable_access']=os.access(path,os.X_OK)
+        else:item['unsupported_type']=True
+        candidates.append(item)
+    return {'known_bin':KNOWN_PYTHON_BIN,'candidates':candidates,'executed':False,'base_interpreter_selected':False}
 
 def git_check():
     env={'PATH':'/usr/bin:/bin','HOME':'/nonexistent','LANG':'C','GIT_CONFIG_NOSYSTEM':'1','GIT_CONFIG_GLOBAL':'/dev/null'}
@@ -63,7 +81,8 @@ def inspect(temporary=False):
     def check(name,fn):
         try:r['checks'][name]=fn()
         except Exception as e:r['failures'].append({'check':name,'error':type(e).__name__+': '+str(e)})
-    r['checks']['python']={'version':list(sys.version_info[:3]),'supported':sys.version_info>=(3,10)}
+    r['checks']['python']={'version':list(sys.version_info[:3]),'supported':sys.version_info>=(3,10),'executable':sys.executable,'resolved_executable':os.path.realpath(sys.executable),'prefix':sys.prefix,'base_prefix':getattr(sys,'base_prefix',sys.prefix),'base_executable':getattr(sys,'_base_executable',None)}
+    check('known_python_candidates',python_candidates)
     if sys.version_info<(3,10):r['failures'].append({'check':'python','error':'Python3.10+ required'})
     libc=ctypes.CDLL(None,use_errno=True);r['checks']['renameat2_symbol']=hasattr(libc,'renameat2')
     if not hasattr(libc,'renameat2'):r['failures'].append({'check':'renameat2','error':'libc symbol unavailable'})
