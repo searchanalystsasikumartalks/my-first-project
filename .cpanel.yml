@@ -1,0 +1,4 @@
+---
+deployment:
+  tasks:
+    - /bin/bash /home/dzfbipjkvhxg/repositories/github-transfer-test-20261108/deployment/deploy-a-create-only.sh
