@@ -1,4 +1,20 @@
 ---
 deployment:
   tasks:
-    - /opt/alt/python311/bin/python3.11 -I -S -B /home/dzfbipjkvhxg/.local/appstudio-deployer/coordinator_entry.py run-once
+    - >-
+      /bin/sh -eu -c 'src=/home/dzfbipjkvhxg/repositories/github-transfer-test-20261108/apps/rocket-launch-lab;
+      parent=/home/dzfbipjkvhxg/public_html/appln/apps;
+      dest="$parent/rocket-launch-lab";
+      test -d "$parent";
+      test "$(cd "$parent" && pwd -P)" = "$parent";
+      test ! -e "$dest";
+      test ! -L "$dest";
+      for file in index.html style.css app.js; do
+      test -f "$src/$file";
+      test ! -L "$src/$file";
+      done;
+      /bin/mkdir "$dest";
+      /bin/cp "$src/index.html" "$src/style.css" "$src/app.js" "$dest/";
+      /usr/bin/cmp "$src/index.html" "$dest/index.html";
+      /usr/bin/cmp "$src/style.css" "$dest/style.css";
+      /usr/bin/cmp "$src/app.js" "$dest/app.js"'
