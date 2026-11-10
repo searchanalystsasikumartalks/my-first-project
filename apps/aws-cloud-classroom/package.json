@@ -2,7 +2,7 @@
   "name": "aws-cloud-classroom",
   "version": "1.0.0",
   "private": true,
-  "description": "Tamil-first frontend-only AWS tutorial. No runtime dependencies.",
+  "description": "English-only frontend-only AWS tutorial. No runtime dependencies.",
   "scripts": {"test": "node --check app.js && node --check data.js && node test.cjs"},
   "devDependencies": {"jsdom": "26.1.0"}
 }

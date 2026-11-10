@@ -1,24 +1,186 @@
 'use strict';
 const LESSONS = [
-['cloud','Cloud basics','அடிப்படை','Cloud என்பது என்ன?','தேவையான நேரத்தில் இணையம் வழியாக computing resources பயன்படுத்துவது. சொந்த server வாங்குவதற்குப் பதில் தேவைக்கேற்ப resources எடுக்கலாம்.','வீட்டில் generator வாங்காமல் மின்சாரம் பயன்படுத்துவது போன்ற ஒப்புமை. ஆனால் cloud செலவை நீங்கள்தான் கண்காணிக்க வேண்டும்.','Frontend என்பது பயனர் பார்க்கும் திரை. Backend என்பது request-ஐப் பெற்று business logic, data access செய்யும் பகுதி. இந்த app frontend மட்டும்.','https://aws.amazon.com/what-is-cloud-computing/'],
-['regions','Regions & AZs','அடிப்படை','உங்கள் application எங்கே இருக்கும்?','Region என்பது தனி geographical area. ஒரு Region-க்குள் பல தனித்த Availability Zones இருக்கும். பல AZ-களில் deploy செய்வது availability-க்கு உதவும்.','ஒரே ஊரில் ஒரே கிடங்கில் எல்லாப் பொருளையும் வைக்காமல் தனித்த கிடங்குகளில் வைப்பது போன்றது.','Multi-AZ தானாக எல்லா தோல்விகளையும் தீர்க்காது. Application architecture, replication, recovery ஆகியவற்றையும் திட்டமிட வேண்டும்.','https://aws.amazon.com/about-aws/global-infrastructure/regions_az/'],
-['iam','IAM','பாதுகாப்பு','யார் என்ன செய்யலாம்?','Identity and Access Management மூலம் AWS resources-க்கு permissions கொடுக்கலாம். தேவையான குறைந்த permissions மட்டும் தருவது least privilege.','அலுவலகத்தில் ஒவ்வொரு ஊழியருக்கும் தேவையான அறைக்கான access card மட்டும்.','Root account-ஐ அன்றாட வேலைக்குப் பயன்படுத்தாதீர்கள். MFA, roles, temporary credentials பயன்படுத்துங்கள். Frontend code-ல் secret access keys வைக்கக் கூடாது.','https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html'],
-['ec2','EC2','Compute','Cloud-ல் virtual server','EC2 instance என்பது virtual server. OS, application, updates ஆகியவற்றை நீங்கள் நிர்வகிக்கலாம். Instance வகை workload-ஐப் பொறுத்தது.','வாடகைக் கடையை எடுத்துப் பொருட்கள், ஊழியர்கள், பராமரிப்பை நீங்களே நிர்வகிப்பது போல.','EC2 நிறுத்தினாலும் storage போன்ற charges தொடரலாம். Security groups network traffic-ஐக் கட்டுப்படுத்துகின்றன.','https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html'],
-['lambda','Lambda','Compute','நிகழ்வு வந்தால் code ஓடும்','Lambda என்பது servers-ஐ நேரடியாக நிர்வகிக்காமல் code இயக்கும் service. HTTP request, file upload போன்ற events function-ஐத் தொடங்கலாம்.','Order வந்தபோது மட்டும் வேலை செய்யும் kitchen station போல.','Serverless என்றால் servers இல்லை என்று பொருள் அல்ல. Time limits, permissions, concurrency, cold starts பற்றி அறிய வேண்டும்.','https://docs.aws.amazon.com/lambda/latest/dg/welcome.html'],
-['s3','S3','Storage','Files-க்கான object storage','Amazon S3-ல் objects-ஐ buckets-ல் சேமிக்கலாம். Images, backups, static assets போன்றவற்றுக்கு ஏற்றது.','பெயர் கொடுத்து வைத்துள்ள கோப்புப் பெட்டிகள் போல; ஒவ்வொரு object-க்கும் key இருக்கும்.','S3 relational database அல்ல. Buckets-ஐ private-ஆக வைத்துக் கொண்டு தேவையான access மட்டும் கொடுக்கவும்.','https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html'],
-['rds','RDS','Data','Managed relational database','RDS relational database அமைத்தல், இயக்குதல், scaling ஆகியவற்றை எளிதாக்குகிறது. SQL மற்றும் related tables தேவைப்படும் applications-க்கு பயன்படும்.','வாடிக்கையாளர், order, payment அட்டவணைகள் ஒன்றுடன் ஒன்று தொடர்புடைய கணக்குப் புத்தகம் போல.','Managed என்றாலும் schema, queries, access permissions, retention மற்றும் recovery தேவைகள் உங்கள் பொறுப்பு.','https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html'],
-['dynamodb','DynamoDB','Data','Key-value & document data','DynamoDB என்பது serverless, fully managed NoSQL database. Partition key மற்றும் access patterns முக்கியம்.','சரியான குறியீட்டைக் கொடுத்தால் பொருள் கிடைக்கும் ஒழுங்குபடுத்தப்பட்ட அலமாரி போல.','RDS-க்கு எப்போதும் மாற்று அல்ல. உங்கள் data relationships, queries, workload அடிப்படையில் தேர்வு செய்யுங்கள்.','https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html'],
-['api','API Gateway','Network','Frontend-க்கும் backend-க்கும் வாசல்','API Gateway மூலம் HTTP, REST, WebSocket APIs உருவாக்கலாம். Client request-ஐ Lambda போன்ற backend integration-க்கு அனுப்பலாம்.','உணவகத்தில் order-ஐ kitchen-க்கு அனுப்பும் counter போல.','API இருப்பது மட்டும் authentication அல்ல. Authorization, validation, throttling, error handling அமைக்க வேண்டும்.','https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html'],
-['vpc','VPC','Network','தனிப்பட்ட virtual network','VPC-ல் AWS resources-க்கான virtual network அமைக்கலாம். Subnets, routes, gateways மூலம் network அமைப்பை நிர்வகிக்கலாம்.','ஒரு வளாகத்தின் சாலைகள், நுழைவாயில்கள், தனிப் பகுதிகள் போல.','Public subnet-ல் இருப்பது மட்டும் internet access தராது. Routes, IP address, security rules ஆகியவை பொருந்த வேண்டும்.','https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html'],
-['cdn','CloudFront & DNS','Network','Content விரைவாகச் செல்லும் பாதை','Route 53 DNS domain பெயரை endpoint-க்கு resolve செய்ய உதவும். CloudFront edge locations-ல் content cache செய்து பயனருக்கு அருகில் வழங்கலாம்.','DNS முகவரிப் புத்தகம் போல; CDN அருகிலுள்ள விநியோக மையம் போல.','Cache expiry மற்றும் invalidation திட்டமிடுங்கள். CloudFront origin S3 அல்லது HTTP server போன்றதாக இருக்கலாம்.','https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html'],
-['ops','Monitoring & cost','பாதுகாப்பு','இயங்குகிறதா? செலவு எவ்வளவு?','CloudWatch metrics, logs, alarms மூலம் application-ஐ கவனிக்கலாம். AWS Budgets மூலம் cost அல்லது usage thresholds பற்றி alerts பெறலாம்.','வாகன dashboard மற்றும் மாத செலவுக் கணக்கு போல.','Budget alert ஒரு கட்டாய spending cap அல்ல. Shared responsibility model-ல் AWS cloud infrastructure-ஐப் பாதுகாக்கும்; உங்கள் data மற்றும் configuration பொறுப்பு service-ஐப் பொறுத்தது.','https://aws.amazon.com/compliance/shared-responsibility-model/']
-].map(([id,name,category,title,explanation,analogy,caution,url])=>({id,name,category,title,explanation,analogy,caution,url}));
+  {
+    "id": "cloud",
+    "name": "Cloud basics",
+    "category": "Basics",
+    "title": "What is the cloud?",
+    "explanation": "Use computing resources over the internet when you need them. Instead of buying your own server, you can access resources on demand.",
+    "analogy": "Think of using electricity from a utility instead of buying a generator for your home. You still need to monitor your cloud spending.",
+    "caution": "The frontend is the screen a user sees. The backend handles requests, business logic and data access. This app is frontend only.",
+    "url": "https://aws.amazon.com/what-is-cloud-computing/"
+  },
+  {
+    "id": "regions",
+    "name": "Regions & AZs",
+    "category": "Basics",
+    "title": "Where does your application run?",
+    "explanation": "A Region is a separate geographical area containing multiple distinct Availability Zones. Deploying across multiple AZs can improve availability.",
+    "analogy": "Think of keeping supplies in separate warehouses rather than storing everything in a single building.",
+    "caution": "Multi-AZ does not automatically solve every failure. Plan your application architecture, replication and recovery.",
+    "url": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/"
+  },
+  {
+    "id": "iam",
+    "name": "IAM",
+    "category": "Security",
+    "title": "Who can do what?",
+    "explanation": "Identity and Access Management controls permissions for AWS resources. Least privilege means granting only the permissions needed for a task.",
+    "analogy": "Think of giving each employee an access card only for the rooms they need.",
+    "caution": "Do not use the root account for everyday work. Use MFA, roles and temporary credentials. Never put secret access keys in frontend code.",
+    "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+  },
+  {
+    "id": "ec2",
+    "name": "EC2",
+    "category": "Compute",
+    "title": "A virtual server in the cloud",
+    "explanation": "An EC2 instance is a virtual server. You can manage its operating system, applications and updates. Choose an instance type to suit your workload.",
+    "analogy": "Think of renting a shop and managing its stock, staff and maintenance yourself.",
+    "caution": "Storage and other charges may continue after you stop an EC2 instance. Security groups control network traffic.",
+    "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html"
+  },
+  {
+    "id": "lambda",
+    "name": "Lambda",
+    "category": "Compute",
+    "title": "Run code in response to events",
+    "explanation": "Lambda runs code without requiring you to manage servers directly. Events such as HTTP requests or file uploads can trigger a function.",
+    "analogy": "Think of a kitchen station that starts working when an order arrives.",
+    "caution": "Serverless does not mean there are no servers. Learn about time limits, permissions, concurrency and cold starts.",
+    "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+  },
+  {
+    "id": "s3",
+    "name": "S3",
+    "category": "Storage",
+    "title": "Object storage for files",
+    "explanation": "Amazon S3 stores objects in buckets. It is useful for images, backups and static assets.",
+    "analogy": "Think of labelled file boxes: each object has a key that identifies it.",
+    "caution": "S3 is not a relational database. Keep buckets private and grant only the access that is needed.",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+  },
+  {
+    "id": "rds",
+    "name": "RDS",
+    "category": "Data",
+    "title": "A managed relational database",
+    "explanation": "RDS simplifies setting up, operating and scaling a relational database. It is useful for applications that need SQL and related tables.",
+    "analogy": "Think of an accounting book with linked tables for customers, orders and payments.",
+    "caution": "Managed does not mean responsibility-free. You still plan schemas, queries, access permissions, retention and recovery.",
+    "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html"
+  },
+  {
+    "id": "dynamodb",
+    "name": "DynamoDB",
+    "category": "Data",
+    "title": "Key-value and document data",
+    "explanation": "DynamoDB is a serverless, fully managed NoSQL database. Partition keys and access patterns are important design choices.",
+    "analogy": "Think of an organised shelf where the right reference code helps you find an item.",
+    "caution": "DynamoDB is not always a replacement for RDS. Choose based on your data relationships, queries and workload.",
+    "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html"
+  },
+  {
+    "id": "api",
+    "name": "API Gateway",
+    "category": "Network",
+    "title": "A gateway between frontend and backend",
+    "explanation": "API Gateway lets you create HTTP, REST and WebSocket APIs. It can send client requests to backend integrations such as Lambda.",
+    "analogy": "Think of a restaurant counter passing an order to the kitchen.",
+    "caution": "Having an API does not provide authentication by itself. Configure authorization, validation, throttling and error handling.",
+    "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html"
+  },
+  {
+    "id": "vpc",
+    "name": "VPC",
+    "category": "Network",
+    "title": "Your own virtual network",
+    "explanation": "A VPC lets you define a virtual network for AWS resources. Use subnets, routes and gateways to manage its layout.",
+    "analogy": "Think of the roads, entrances and separate areas within a campus.",
+    "caution": "Being in a public subnet alone does not give a resource internet access. Routes, IP addresses and security rules must also be configured appropriately.",
+    "url": "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+  },
+  {
+    "id": "cdn",
+    "name": "CloudFront & DNS",
+    "category": "Network",
+    "title": "A faster path for content",
+    "explanation": "Route 53 DNS helps resolve a domain name to an endpoint. CloudFront can cache content at edge locations and serve it closer to users.",
+    "analogy": "Think of DNS as an address book and a CDN as a nearby distribution centre.",
+    "caution": "Plan cache expiry and invalidation. A CloudFront origin can be S3, an HTTP server or another supported source.",
+    "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"
+  },
+  {
+    "id": "ops",
+    "name": "Monitoring & cost",
+    "category": "Security",
+    "title": "Is it working? What does it cost?",
+    "explanation": "Use CloudWatch metrics, logs and alarms to observe your application. AWS Budgets can alert you about cost or usage thresholds.",
+    "analogy": "Think of a vehicle dashboard alongside a monthly spending tracker.",
+    "caution": "A budget alert is not a hard spending cap. Under the shared responsibility model, AWS protects cloud infrastructure. Your responsibilities for data and configuration depend on the service.",
+    "url": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+  }
+];
 const QUIZ = [
-{q:'Images மற்றும் backup files சேமிக்க எது பொருத்தம்?',a:['S3','IAM','Route 53'],correct:0,why:'S3 object storage: files objects-ஆக buckets-ல் இருக்கும்.'},
-{q:'Frontend JavaScript-ல் AWS secret access key வைக்கலாமா?',a:['ஆம், minify செய்தால் போதும்','கூடாது','Demo என்றால் சரி'],correct:1,why:'Browser code பயனர்களால் பார்க்க முடியும். Secrets-ஐ frontend-ல் வைக்கக் கூடாது.'},
-{q:'Server நிர்வாகம் இல்லாமல் event-driven code இயக்குவது?',a:['Route 53','S3','Lambda'],correct:2,why:'Lambda events-க்கு code இயக்குகிறது. Servers-ஐ AWS நிர்வகிக்கிறது.'},
-{q:'Budget alert செலவைக் கட்டாயமாக நிறுத்துமா?',a:['எப்போதும்','இல்லை','Free Tier-ல் மட்டும்'],correct:1,why:'Alert என்பது அறிவிப்பு. அது ஒரு கட்டாய spending cap அல்ல.'},
-{q:'SQL மற்றும் தொடர்புடைய tables தேவை. எதை முதலில் மதிப்பிடலாம்?',a:['CloudFront','RDS','IAM'],correct:1,why:'RDS managed relational databases வழங்குகிறது. Workload-க்கு ஏற்ப engine தேர்வு செய்ய வேண்டும்.'},
-{q:'Least privilege என்றால்?',a:['எல்லோருக்கும் admin access','Permissions வேண்டாம்','தேவையான permissions மட்டும்'],correct:2,why:'ஒரு task-க்கு தேவையான அளவு access மட்டும் வழங்குவது ஆபத்தைக் குறைக்கும்.'}
+  {
+    "q": "Which service is suitable for storing images and backup files?",
+    "a": [
+      "S3",
+      "IAM",
+      "Route 53"
+    ],
+    "correct": 0,
+    "why": "S3 is object storage: files are stored as objects in buckets."
+  },
+  {
+    "q": "Should you put an AWS secret access key in frontend JavaScript?",
+    "a": [
+      "Yes, if the code is minified",
+      "No",
+      "It is fine for a demo"
+    ],
+    "correct": 1,
+    "why": "Users can inspect browser code. Never put secrets in the frontend."
+  },
+  {
+    "q": "Which service runs event-driven code without requiring you to manage servers?",
+    "a": [
+      "Route 53",
+      "S3",
+      "Lambda"
+    ],
+    "correct": 2,
+    "why": "Lambda runs code in response to events. AWS manages the servers."
+  },
+  {
+    "q": "Does a budget alert automatically enforce a hard spending cap?",
+    "a": [
+      "Always",
+      "No",
+      "Only in the Free Tier"
+    ],
+    "correct": 1,
+    "why": "An alert is a notification. It is not a hard spending cap."
+  },
+  {
+    "q": "You need SQL and related tables. Which service should you evaluate first?",
+    "a": [
+      "CloudFront",
+      "RDS",
+      "IAM"
+    ],
+    "correct": 1,
+    "why": "RDS provides managed relational databases. Choose an engine that suits your workload."
+  },
+  {
+    "q": "What does least privilege mean?",
+    "a": [
+      "Admin access for everyone",
+      "No permissions at all",
+      "Only the permissions needed"
+    ],
+    "correct": 2,
+    "why": "Granting only the access needed for a task reduces risk."
+  }
 ];
 if(typeof module!=='undefined') module.exports={LESSONS,QUIZ};

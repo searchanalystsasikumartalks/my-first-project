@@ -1,6 +1,6 @@
 # AWS Cloud Classroom
 
-Tamil-first, frontend-only AWS introduction with English service names. Twelve concept cards, category/search filters, browser-local completion progress, two clickable request-flow simulations, and a six-question quiz with explanations. Official AWS sources are linked next to each topic; introductory documentation was checked on 9 November 2026. This independent educational project is not affiliated with AWS.
+English-only, frontend-only AWS introduction with English service names. Twelve concept cards, category/search filters, browser-local completion progress, two clickable request-flow simulations, and a six-question quiz with explanations. Official AWS sources are linked next to each topic; introductory documentation was checked on 9 November 2026. The complete interface and learning content were translated to English on 10 November 2026, preserving lesson IDs, quiz answers and browser-local progress. This independent educational project is not affiliated with AWS.
 
 ## Run
 
@@ -10,9 +10,9 @@ Open `index.html` or serve this directory with any static web server. Keep `inde
 
 With Node 18+ in this directory: `npm install --ignore-scripts`, then `npm test`. jsdom is a test-only dependency, pinned to 26.1.0. Do not upload node_modules or development files to the public app folder.
 
-Passed: JavaScript syntax; unique lesson IDs; source domains; search/filter/empty results; progress toggling; architecture stepping, wraparound, direct selection, scenario reset and restart; all quiz answers; duplicate answer prevention; incorrect answer feedback; retry; progress reset cancel/confirm. Tests use a DOM simulator, not a real browser.
+Passed: English-only runtime text and HTML language; saved-progress compatibility; malformed and blocked storage; JavaScript syntax; unique lesson IDs; source domains; search/filter/empty results; progress toggling; architecture stepping, wraparound, direct selection, scenario reset and restart; all quiz answers; duplicate answer prevention; incorrect answer feedback; retry; progress reset cancel/confirm. Tests use a DOM simulator, not a real browser.
 
-Visual/mobile browser QA has NOT passed: bundled Playwright Chromium was absent and installed Chromium failed to launch in the execution environment. CSS includes desktop/tablet/mobile layouts, but verify the rendered result on phone and desktop before public release. Check keyboard focus, Tamil glyph rendering, no horizontal overflow, all interactive controls, refresh persistence, and source links.
+Visual/mobile browser QA has NOT passed: bundled Playwright Chromium was absent and installed Chromium failed to launch in the execution environment. CSS includes desktop/tablet/mobile layouts, but verify the rendered result on phone and desktop before public release. Check keyboard focus, English text rendering, no horizontal overflow, all interactive controls, refresh persistence, and source links.
 
 ## Repository and manual release
 
