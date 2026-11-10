@@ -1,0 +1,4 @@
+export const fields=['venue','date','contact','verified','arrival','entrance','facilities','sensory','questions'];
+export const labels={venue:'Destination',date:'Visit date',contact:'Venue contact / source',verified:'Last confirmed',arrival:'Arrival and transport',entrance:'Entrance and route',facilities:'Facilities and seating',sensory:'Sensory and communication needs',questions:'Questions still to confirm'};
+export function makeBrief(data){return ['ACCESSIBILITY VISIT BRIEF',...fields.map(k=>`${labels[k]}: ${data[k]?.trim()||'Not recorded'}`),'Details are self-entered, not an accessibility certification. Confirm current arrangements directly with the venue.'].join('\n\n');}
+export function normalize(data){return Object.fromEntries(fields.map(k=>[k,typeof data?.[k]==='string'?data[k]:'']));}

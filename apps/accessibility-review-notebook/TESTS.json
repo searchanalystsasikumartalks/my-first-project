@@ -1,0 +1,13 @@
+{
+  "app": "accessibility-review-notebook",
+  "passed": true,
+  "checks": [
+    "initial empty state",
+    "create entry",
+    "render saved values",
+    "JSON export payload",
+    "confirmed deletion",
+    "empty state after delete",
+    "localStorage write"
+  ]
+}

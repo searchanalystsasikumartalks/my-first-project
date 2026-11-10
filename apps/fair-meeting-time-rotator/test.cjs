@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');const {parts,penalty,schedule,calendar,stamp}=require('./logic.js');
+assert.equal(parts(Date.parse('2026-03-08T06:30:00Z'),'America/New_York').hour,'01');
+assert.equal(parts(Date.parse('2026-03-08T07:30:00Z'),'America/New_York').hour,'03');
+assert.equal(parts(Date.parse('2026-11-01T05:30:00Z'),'America/New_York').hour,'01');
+assert.equal(parts(Date.parse('2026-11-01T06:30:00Z'),'America/New_York').hour,'01');
+assert.equal(parts(Date.parse('2026-03-29T01:30:00Z'),'Europe/London').hour,'02');
+assert.equal(parts(Date.parse('2026-01-01T00:00:00Z'),'Asia/Kolkata').minute,'30');
+const people=[{zone:'UTC',start:9,end:17},{zone:'Asia/Kolkata',start:9,end:17}];
+assert.equal(penalty(Date.parse('2026-11-09T16:30:00Z'),people[0],60,false),30);
+assert.equal(penalty(Date.parse('2026-11-07T10:00:00Z'),people[0],60,true),60);
+const s=schedule('2026-11-09',4,7,60,people,true);assert.equal(s.events.length,4);assert.deepEqual(s.totals,[0,0]);
+assert.throws(()=>schedule('2026-02-30',4,7,60,people,false));assert.throws(()=>schedule('2026-11-09',4,7,60,[{...people[0],zone:'wrong'},people[1]],false));
+assert.equal(stamp(Date.parse('2026-01-01T10:30:00Z')),'20260101T103000Z');assert.ok(calendar(s.events,60).includes('DTSTART:20261109T090000Z'));assert.ok(calendar(s.events,60).endsWith('END:VCALENDAR\r\n'));console.log('15 meeting assertions passed, including spring and fall DST');

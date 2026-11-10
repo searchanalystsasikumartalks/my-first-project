@@ -1,0 +1,1 @@
+const assert=require('node:assert/strict');const {quote}=require('./logic.js');assert.equal(quote(1000,5,0,83,0).received,82585);assert.equal(quote(110,0,10,2,5).received,194.99999999999997);assert.throws(()=>quote(5,5,0,1,0));assert.throws(()=>quote(10,0,0,1,20));assert.equal(quote(100,0,0,2,0,2).gap,0);console.log('5 remittance assertions passed');
